@@ -17,12 +17,12 @@ class LeapSystem implements Listener {
     private const LEAP_POWER = 0.8;
     private const LEAP_UPWARD_POWER = 0.6;
 
-    public function __construct() {
+    public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     public function onJoin(PlayerJoinEvent $event): void {
-        $this->leapSystem->giveLeapFeathers($player);
+        $this->giveLeapFeathers($event->getPlayer());
     }
 
     public function onDrop(PlayerDropItemEvent $event): void {
