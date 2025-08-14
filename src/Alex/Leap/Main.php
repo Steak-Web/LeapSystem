@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Alex\Leap;
 
 use pocketmine\player\Player;
@@ -12,7 +14,7 @@ use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 
-class LeapSystem implements Listener {
+final class Main extends PluginBase implements Listener{
     private array $leapStates = []; // Track leap state for each player
     private const LEAP_POWER = 0.8;
     private const LEAP_UPWARD_POWER = 0.6;
@@ -22,7 +24,8 @@ class LeapSystem implements Listener {
     }
 
     public function onJoin(PlayerJoinEvent $event): void {
-        $this->giveLeapFeathers($event->getPlayer());
+        $player = $event->getPlayer();
+        $this->giveLeapFeathers($player);
     }
 
     public function onDrop(PlayerDropItemEvent $event): void {
