@@ -19,7 +19,10 @@ class LeapSystem implements Listener {
 
     public function __construct() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->leapSystem = new LeapSystem($this);
+    }
+
+    public function onJoin(PlayerJoinEvent $event): void {
+        $this->leapSystem->giveLeapFeathers($player);
     }
 
     public function onDrop(PlayerDropItemEvent $event): void {
@@ -49,6 +52,7 @@ class LeapSystem implements Listener {
             }
         }
     }
+
 
     public function onItemHeld(PlayerItemHeldEvent $event): void {
         $player = $event->getPlayer();
